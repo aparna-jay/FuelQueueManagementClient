@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FuelQueueManagement">
         <activity
+            android:name=".FuelStationDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".StationOwnerRegistrationActivity"
             android:exported="false" />
         <activity
