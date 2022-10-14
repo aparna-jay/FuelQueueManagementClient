@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="0.156" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Queue Lengths"
@@ -120,7 +120,7 @@
         app:layout_constraintVertical_bias="0.428" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/username1"
         android:layout_width="107dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
@@ -196,7 +196,7 @@
         app:layout_constraintVertical_bias="0.589" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Diesel Queue Lengths"
@@ -211,7 +211,7 @@
         app:layout_constraintVertical_bias="0.582" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Petrol Queue Lengths"
@@ -226,7 +226,7 @@
         app:layout_constraintVertical_bias="0.49" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Waiting Time"
@@ -241,7 +241,7 @@
         app:layout_constraintVertical_bias="0.743" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fuel Status"

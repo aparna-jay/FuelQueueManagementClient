@@ -24,11 +24,11 @@
         android:id="@+id/lbl_stationID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
         android:text="ID :"
         android:textColor="@color/btn_background"
-        android:textSize="16sp"
+        android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stationName" />
@@ -37,12 +37,12 @@
         android:id="@+id/stationID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/btn_background"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:text="Station ID"
+        android:textColor="@color/btn_background"
+        android:textSize="19sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stationName" />
 
@@ -51,11 +51,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
-        android:textColor="@color/btn_background"
         android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:text="Address"
+        android:textColor="@color/btn_background"
+        android:textSize="19sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stationID" />
 
@@ -64,11 +64,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
-        android:textColor="@color/btn_background"
         android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:text="Email"
+        android:textColor="@color/btn_background"
+        android:textSize="19sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address" />
 
@@ -101,37 +101,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:textColor="@color/btn_background"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:layout_marginTop="20dp"
             android:text="Petrol"
+            android:textColor="@color/btn_background"
+            android:textSize="19sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/petrol_availability"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/btn_background"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
             android:text="Available"
+            android:textColor="@color/btn_background"
+            android:textSize="19sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/ptrl_changeavailability"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
             android:layout_gravity="center"
-            android:text="Mark as Finished"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/btn_background"
-            android:textColor="@color/btn_text"
-            app:layout_constraintBotton_toBottomOf="parent"
-            />
+            android:text="Mark as Finished"
+            android:textColor="@color/btn_text" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -144,29 +142,29 @@
         app:cardCornerRadius="15dp"
         tools:layout_editor_absoluteX="135dp">
 
-    <TextView
-        android:id="@+id/diesel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/btn_background"
-        android:layout_marginLeft="40dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:text="Diesel"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/diesel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:text="Diesel"
+            android:textColor="@color/btn_background"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/diesel_availability"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/btn_background"
-        android:layout_marginLeft="100dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:text="Available"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/diesel_availability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
+            android:text="Available"
+            android:textColor="@color/btn_background"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/dsl_changeavailability"
@@ -178,7 +176,6 @@
         android:backgroundTint="@color/btn_background"
         android:textColor="@color/btn_text"
         android:layout_marginBottom="30dp"
-        app:layout_constraintBotton_toBottomOf="parent"
         />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
