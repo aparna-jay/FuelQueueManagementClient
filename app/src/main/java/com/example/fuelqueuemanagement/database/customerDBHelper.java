@@ -41,14 +41,27 @@ public class customerDBHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+//    //Add customer
+//    public void addCustomer(String name, String email, String password, String vehicleType) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put(COLUMN_CUSTOMER_NAME, name);
+//        values.put(COLUMN_CUSTOMER_EMAIL, email);
+//        values.put(COLUMN_CUSTOMER_PASSWORD, password);
+//        values.put(COLUMN_VEHICLE_TYPE, vehicleType);
+//        // Inserting Row
+//        db.insert(TABLE_CUSTOMER, null, values);
+//        db.close();
+//    }
+
     //Add customer
-    public void addCustomer(String name, String email, String password, String vehicleType) {
+    public void addCustomer(customerModel customerModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_CUSTOMER_NAME, name);
-        values.put(COLUMN_CUSTOMER_EMAIL, email);
-        values.put(COLUMN_CUSTOMER_PASSWORD, password);
-        values.put(COLUMN_VEHICLE_TYPE, vehicleType);
+        values.put(COLUMN_CUSTOMER_NAME, customerModel.getName());
+        values.put(COLUMN_CUSTOMER_EMAIL, customerModel.getEmail());
+        values.put(COLUMN_CUSTOMER_PASSWORD, customerModel.getPassword());
+        values.put(COLUMN_VEHICLE_TYPE, customerModel.getVehicleType());
         // Inserting Row
         db.insert(TABLE_CUSTOMER, null, values);
         db.close();
@@ -105,20 +118,6 @@ public class customerDBHelper extends SQLiteOpenHelper{
 
 
 
-//    /**
-//     * This method is to create user record
-//     */
-//    public void addUser(ParentsModel user) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        values.put(COLUMN_USER_NAME, user.getName());
-//        values.put(COLUMN_USER_EMAIL, user.getEmail());
-//        values.put(COLUMN_USER_PASSWORD, user.getPassword());
-//        values.put(UPLOADED, user.getUploaded());
-//        // Inserting Row
-//        db.insert(TABLE_USER, null, values);
-//        db.close();
-//    }
 
 
 
