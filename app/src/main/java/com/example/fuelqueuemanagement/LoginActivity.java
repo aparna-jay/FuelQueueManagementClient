@@ -37,16 +37,13 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
 
-        //Set Spinner elements
+        //Spinner tutorial resource: https://www.youtube.com/watch?v=zSgrMVt_MFg
         usersSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         List<String> users = new ArrayList<String>();
         users.add("Customer");
         users.add("Station Owner");
-        // Creating adapter for spinner
         ArrayAdapter<String> dataAdapterType = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, users);
-        // Drop down layout style - list view with radio button
         dataAdapterType.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        // attaching data adapter to spinner
         usersSpinner.setAdapter(dataAdapterType);
 
         //Login on button click
