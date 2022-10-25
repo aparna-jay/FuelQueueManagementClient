@@ -1,3 +1,10 @@
+/****************************************************************************
+ * Author 1 - Jayawardena W. A. M. (IT19123882)
+ * Author 2 - Imbulana Liyanage D. S. I. (IT19134772)
+ * Course - Enterprise Application Development (SE4040)
+ * Last Modified On- 25.10.2022
+ *****************************************************************************/
+
 package com.example.fuelqueuemanagement.database;
 
 import android.content.ContentValues;
@@ -5,6 +12,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 
 public class customerDBHelper extends SQLiteOpenHelper{
     // Database configurations
@@ -95,5 +112,57 @@ public class customerDBHelper extends SQLiteOpenHelper{
         cursor.close();
         db.close();
         return cursorCount > 0;
+    }
+
+    //Set IIS base url
+    private String BASE_URL = "http://192.168.1.3:8080/api";
+
+
+    /* Resources
+    POST request with okhttp- https://www.baeldung.com/okhttp-post
+    Handling NetworkOnMainThreadException using threads - https://stackoverflow.com/questions/6343166/how-can-i-fix-android-os-networkonmainthreadexception
+    */
+
+    //Insert customer details to online database
+    public void createCustomer(String customerId, String customerName, String email, String password, String vehicleType,
+                               int arrivalTime, int departureTime){
+        //Create new thread to prevent network operations on main thread
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    //Using OkHttp library
+                    OkHttpClient client = new OkHttpClient();
+                    //Create string of customer data
+                    String json = "{" +
+                            "\"customerId\":" + "\"" + customerId + "\"" + ", " +
+                            "\"customerName\":" + "\"" + customerName + "\"" + ", " +
+                            "\"email\":" + "\"" + email + "\"" + "," +
+                            "\"password\":" + "\"" + password  + "\"" + ", " +
+                            "\"vehicleType\":" + "\"" + vehicleType + "\"" + "," +
+                            "\"arrivalTime\":" + "\"" + arrivalTime + "\"" + "," +
+                            "\"departureTime\":" + departureTime+ "}";
+                    //Create JSON Object
+                    RequestBody body = RequestBody.create(
+                            MediaType.parse("application/json"), json);
+                    //Create HTTP POST request
+                    Request request = new Request.Builder()
+                            .url(BASE_URL + "/Station/CreateCustomer")
+                            .post(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    try {
+                        //Get response
+                        Response response = call.execute();
+                        Log.i("Response", response.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 }

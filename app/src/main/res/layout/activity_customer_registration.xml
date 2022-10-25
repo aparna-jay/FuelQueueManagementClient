@@ -163,36 +163,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.155" />
 
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Petrol"
-        android:textColor="@color/btn_background"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.682"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673" />
-
-    <RadioButton
-        android:id="@+id/radioButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Diesel"
-        android:textColor="@color/btn_background"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.715" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="126dp"
@@ -207,6 +177,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.677" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="102dp"
+        android:layout_height="83dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.600"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.700">
+
+        <RadioButton
+            android:id="@+id/RadioButtonPetrol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Petrol"
+            android:textColor="@color/btn_background"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/RadioButtonDiesel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diesel"
+            android:textColor="@color/btn_background"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
