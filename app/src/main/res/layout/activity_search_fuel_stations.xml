@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
     <Button
-        android:id="@+id/afterPump"
+        android:id="@+id/joinQueue"
         android:layout_width="302dp"
         android:layout_height="46dp"
         android:text="Join to the queue"
