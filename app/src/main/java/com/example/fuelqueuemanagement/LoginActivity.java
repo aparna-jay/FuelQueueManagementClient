@@ -1,9 +1,17 @@
+/****************************************************************************
+ * Author 1 - Jayawardena W. A. M. (IT19123882)
+ * Author 2 - Imbulana Liyanage D. S. I. (IT19134772)
+ * Course - Enterprise Application Development (SE4040)
+ * Last Modified On- 25.10.2022
+ *****************************************************************************/
+
 package com.example.fuelqueuemanagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,11 +20,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.fuelqueuemanagement.database.StationOnlineDBHelper;
 import com.example.fuelqueuemanagement.database.customerDBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//Manage user login UI
 public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner usersSpinner;
@@ -50,19 +60,28 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //customer login
+                if(userType.equals("Customer")){
                     Login();
+                }
+                //station owner login
+                else if (userType.equals("Station Owner")){}
+                StationOnlineDBHelper stationOnlineDBHelper = new StationOnlineDBHelper();
+                stationOnlineDBHelper.stationOwnerLogin(email.getText().toString(), password.getText().toString(), LoginActivity.this);
             }
         });
 
     }
 
         private void Login() {
+        //verify user login with sqlite
             if (DbHelper.login(email.getText().toString().trim()
                     , password.getText().toString().trim())) {
                 user = "customer";
                 Intent accountsIntent = new Intent(LoginActivity.this, MainActivity.class);
                 accountsIntent.putExtra("EMAIL", email.getText().toString().trim());
                 emptyInputEditText();
+                //set logged user type as customer
                 loggedUser = "customer";
                 startActivity(accountsIntent);
             } else {
@@ -70,6 +89,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         }
 
+        //Empty text fields after login
         private void emptyInputEditText() {
             email.setText(null);
             password.setText(null);
@@ -77,11 +97,11 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
+        // Get user type
         userType = parent.getItemAtPosition(position).toString();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+
     }
 
     }
