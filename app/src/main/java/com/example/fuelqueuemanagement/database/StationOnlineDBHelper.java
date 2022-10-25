@@ -198,4 +198,66 @@ public class StationOnlineDBHelper {
         });
         thread.start();
     }
+
+    //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
+    //Decrease petrol queue length
+    public void DecreasePetrolQueueLength(String id){
+        //Create new thread to prevent network operations on main thread
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    OkHttpClient client = new OkHttpClient();
+                    //create empty request body
+                    RequestBody body = RequestBody.create(null, new byte[]{});
+                    //build http request
+                    Request request = new Request.Builder()
+                            .url(BASE_URL + "/Station/DecrementPetrolQueue/" + id)
+                            .put(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    try {
+                        Response response = call.execute();
+                        Log.e("Response", response.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
+
+    //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
+    //Decrease diesel queue length
+    public void DecreaseDieselQueueLength(String id){
+        //Create new thread to prevent network operations on main thread
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+                    OkHttpClient client = new OkHttpClient();
+                    //create empty request body
+                    RequestBody body = RequestBody.create(null, new byte[]{});
+                    //build http request
+                    Request request = new Request.Builder()
+                            .url(BASE_URL + "/Station/DecrementDieselQueue/" + id)
+                            .put(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    try {
+                        Response response = call.execute();
+                        Log.e("Response", response.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
 }
