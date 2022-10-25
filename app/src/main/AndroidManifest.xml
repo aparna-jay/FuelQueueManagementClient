@@ -20,7 +20,7 @@
             android:name=".FuelStationDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".StationOwnerRegistrationActivity"
+            android:name=".CustomerRegistrationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CustomerRegistrationActivity"
+            android:name=".StationOwnerRegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
