@@ -7,14 +7,28 @@
 
 package com.example.fuelqueuemanagement.database;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 //Manage API calls for online database operations
 public class StationOnlineDBHelper {
@@ -71,6 +85,55 @@ public class StationOnlineDBHelper {
             }
         });
         thread.start();
+    }
+
+    //Resource - https://www.geeksforgeeks.org/crud-operation-in-mysql-using-php-volley-android-read-data/
+    //Get all station details
+    public List<stationModel> getAllStations(Context context) {
+        List<stationModel> stationModelList = new ArrayList<>();
+        String URL = BASE_URL + "/Station/GetAllStations";
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        JsonArrayRequest objectRequest = new JsonArrayRequest(
+                com.android.volley.Request.Method.GET,
+                URL,
+                null,
+
+                new com.android.volley.Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.e("Response", response.toString());
+                        JSONObject ob = null;
+
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                ob = response.getJSONObject(i);
+                                String stationId = ob.getString("stationId");
+                                String stationName = ob.getString("stationName");
+                                String email = ob.getString("email");
+                                String address = ob.getString("address");
+                                String password = ob.getString("password");
+                                String petrolAvailability = ob.getString("petrolAvailability");
+                                String dieselAvailability = ob.getString("dieselAvailability");
+                                int petrolQueueLength = ob.getInt("petrolQueueLength");
+                                int dieselQueueLength = ob.getInt("dieselQueueLength");
+                                stationModel stationModel = new stationModel(stationId, stationName, email, address,
+                                        password, petrolAvailability,  dieselAvailability, petrolQueueLength, dieselQueueLength);
+                                stationModelList.add(stationModel);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error", error.toString());
+                    }
+                }
+        );
+        requestQueue.add(objectRequest);
+        return stationModelList;
     }
 
 
