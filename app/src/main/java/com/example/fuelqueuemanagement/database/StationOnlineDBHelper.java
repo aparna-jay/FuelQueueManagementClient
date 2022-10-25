@@ -7,15 +7,22 @@
 
 package com.example.fuelqueuemanagement.database;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.fuelqueuemanagement.LoginActivity;
+import com.example.fuelqueuemanagement.MainActivity;
+import com.example.fuelqueuemanagement.SessionHandler;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -45,12 +52,12 @@ public class StationOnlineDBHelper {
 
     //Insert station details to online database
     public void createStationOwner(String stationId, String stationName, String email, String address, String password,
-                                   String petrolAvailability, String dieselAvailability, int petrolQueueLength, int dieselQueueLength){
+                                   String petrolAvailability, String dieselAvailability, int petrolQueueLength, int dieselQueueLength) {
         //Create new thread to prevent network operations on main thread
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                try  {
+                try {
                     //Using OkHttp library
                     OkHttpClient client = new OkHttpClient();
                     //Create string of station data
@@ -58,12 +65,12 @@ public class StationOnlineDBHelper {
                             "\"stationId\":" + "\"" + stationId + "\"" + ", " +
                             "\"stationName\":" + "\"" + stationName + "\"" + ", " +
                             "\"email\":" + "\"" + email + "\"" + "," +
-                            "\"address\":" + "\"" + address  + "\"" + "," +
-                            "\"password\":" + "\"" + password  + "\"" + ", " +
+                            "\"address\":" + "\"" + address + "\"" + "," +
+                            "\"password\":" + "\"" + password + "\"" + ", " +
                             "\"petrolAvailability\":" + "\"" + petrolAvailability + "\"" + "," +
                             "\"dieselAvailability\":" + "\"" + dieselAvailability + "\"" + "," +
                             "\"petrolQueueLength\":" + petrolQueueLength + "," +
-                            "\"dieselQueueLength\":" + dieselQueueLength+ "}";
+                            "\"dieselQueueLength\":" + dieselQueueLength + "}";
                     //Create JSON Object
                     RequestBody body = RequestBody.create(
                             MediaType.parse("application/json"), json);
@@ -118,7 +125,7 @@ public class StationOnlineDBHelper {
                                 int petrolQueueLength = ob.getInt("petrolQueueLength");
                                 int dieselQueueLength = ob.getInt("dieselQueueLength");
                                 stationModel stationModel = new stationModel(stationId, stationName, email, address,
-                                        password, petrolAvailability,  dieselAvailability, petrolQueueLength, dieselQueueLength);
+                                        password, petrolAvailability, dieselAvailability, petrolQueueLength, dieselQueueLength);
                                 stationModelList.add(stationModel);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -139,43 +146,43 @@ public class StationOnlineDBHelper {
 
     //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
     //Increase petrol queue length
-    public void IncreasePetrolQueueLength(String id){
-        //Create new thread to prevent network operations on main thread
-        Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try  {
-                        OkHttpClient client = new OkHttpClient();
-                        //create empty request body
-                        RequestBody body = RequestBody.create(null, new byte[]{});
-                        //build http request
-                        Request request = new Request.Builder()
-                                .url(BASE_URL + "/Station/IncrementPetrolQueue/" + id)
-                                .put(body)
-                                .build();
-                        Call call = client.newCall(request);
-                        try {
-                            Response response = call.execute();
-                            Log.e("Response", response.toString());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            thread.start();
-        }
-
-    //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
-    //Increase diesel queue length
-    public void IncreaseDieselQueueLength(String id){
+    public void IncreasePetrolQueueLength(String id) {
         //Create new thread to prevent network operations on main thread
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                try  {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    //create empty request body
+                    RequestBody body = RequestBody.create(null, new byte[]{});
+                    //build http request
+                    Request request = new Request.Builder()
+                            .url(BASE_URL + "/Station/IncrementPetrolQueue/" + id)
+                            .put(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    try {
+                        Response response = call.execute();
+                        Log.e("Response", response.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
+
+    //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
+    //Increase diesel queue length
+    public void IncreaseDieselQueueLength(String id) {
+        //Create new thread to prevent network operations on main thread
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
                     OkHttpClient client = new OkHttpClient();
                     //create empty request body
                     RequestBody body = RequestBody.create(null, new byte[]{});
@@ -201,12 +208,12 @@ public class StationOnlineDBHelper {
 
     //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
     //Decrease petrol queue length
-    public void DecreasePetrolQueueLength(String id){
+    public void DecreasePetrolQueueLength(String id) {
         //Create new thread to prevent network operations on main thread
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                try  {
+                try {
                     OkHttpClient client = new OkHttpClient();
                     //create empty request body
                     RequestBody body = RequestBody.create(null, new byte[]{});
@@ -232,12 +239,12 @@ public class StationOnlineDBHelper {
 
     //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
     //Decrease diesel queue length
-    public void DecreaseDieselQueueLength(String id){
+    public void DecreaseDieselQueueLength(String id) {
         //Create new thread to prevent network operations on main thread
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                try  {
+                try {
                     OkHttpClient client = new OkHttpClient();
                     //create empty request body
                     RequestBody body = RequestBody.create(null, new byte[]{});
@@ -260,4 +267,54 @@ public class StationOnlineDBHelper {
         });
         thread.start();
     }
+
+
+    //Resource - https://www.geeksforgeeks.org/crud-operation-in-mysql-using-php-volley-android-read-data/
+    //Station owner login
+    public void stationOwnerLogin(String email, String password, Context context) {
+        String URL = BASE_URL + "/Station/GetStationByEmail/" + email;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        try {
+            JSONObject object = new JSONObject();
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(com.android.volley.Request.Method.GET, URL, null,
+                    new com.android.volley.Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.i("Response", response.toString());
+                            try {
+                                //Extract email and password from response
+                                String responseEmail = response.getString("email");
+                                String responsePassword = response.getString("password");
+
+                                //validate email and password
+                                if(responseEmail.equals(email) && responsePassword.equals(password)){
+                                    //Store logged user's id
+                                    SessionHandler.currentUser = response.getString("stationId");
+                                    //start activity after login
+                                    Intent intent = new Intent(context, MainActivity.class);
+                                    context.startActivity(intent);
+                                    Log.i("current User",SessionHandler.currentUser);
+                                }
+                                else{
+                                    Log.e("Error", "User not verified");
+                                    Toast.makeText(context, "Incorrect password", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(context, "User not found", Toast.LENGTH_LONG).show();
+                    Log.i("Error", error.toString());
+                }
+            });
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
