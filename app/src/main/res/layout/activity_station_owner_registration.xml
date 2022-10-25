@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.666" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/stationName"
         android:layout_width="298dp"
         android:layout_height="47dp"
         android:background="@drawable/rounded_corners"
@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.267" />
 
     <EditText
-        android:id="@+id/customerEmail"
+        android:id="@+id/email"
         android:layout_width="298dp"
         android:layout_height="47dp"
         android:background="@drawable/rounded_corners"
@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.57" />
 
     <Button
-        android:id="@+id/addUser"
+        android:id="@+id/register"
         android:layout_width="177dp"
         android:layout_height="48dp"
         android:text="Register"
@@ -163,14 +163,14 @@
         app:layout_constraintVertical_bias="0.461" />
 
     <EditText
-        android:id="@+id/stationID"
+        android:id="@+id/stationId"
         android:layout_width="298dp"
         android:layout_height="47dp"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
         android:background="@drawable/rounded_corners"
         android:ems="10"
-        android:hint="Enter Station ID"
+        android:hint="Enter Station Registration No."
         android:inputType="textPersonName"
         android:padding="12dp"
         android:textColor="@color/black"
