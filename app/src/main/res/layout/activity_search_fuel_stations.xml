@@ -1,68 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SearchFuelStationsActivity"
-    android:background="@color/screen_bg">
-
-    <ImageView
-        android:id="@+id/imageView19"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/formbackground" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="292dp"
-        android:layout_height="333dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login" />
-
-    <Button
-        android:id="@+id/afterPump"
-        android:layout_width="302dp"
-        android:layout_height="46dp"
-        android:text="Join to the queue"
-        android:textColor="#FF9800"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/btn_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854" />
-
-    <SearchView
-        android:id="@+id/search"
-        android:layout_width="298dp"
-        android:layout_height="47dp"
-        android:background="@drawable/rounded_corners"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209" />
-
+        tools:context=".MainActivity">
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -70,12 +13,21 @@
         android:text="Find filling stations"
         android:textColor="@color/btn_background"
         android:textSize="19sp"
+        android:layout_gravity="center"
+        android:textStyle="bold" />
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/joinQueue"
+        android:layout_width="302dp"
+        android:layout_height="46dp"
+        android:text="Join to the queue"
+        android:layout_gravity="center"
+        android:textColor="#FF9800"
+        android:textSize="19sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.306"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:backgroundTint="@color/btn_background"/>
+</LinearLayout>
