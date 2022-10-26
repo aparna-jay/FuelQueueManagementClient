@@ -78,7 +78,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                 vehicleType= radioButton.getText().toString();
 
                 //Add station owner data
-                cDbHelper.createCustomer("111111112222222233333361", customerName, email, password1,
+                cDbHelper.createCustomer("111111112222222233333387", customerName, email, password1,
                         vehicleType, initialTime, initialTime);
 
             }

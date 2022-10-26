@@ -30,7 +30,7 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner usersSpinner;
-    Button btnLogin;
+    Button btnLogin, btnSignUp;
     private customerDBHelper DbHelper;
     EditText email, password;
     private String user;
@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_login);
 
         btnLogin= (Button) findViewById(R.id.login);
+        btnSignUp= (Button) findViewById(R.id.signUp);
         usersSpinner = (Spinner) findViewById(R.id.userSpinner);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
@@ -73,6 +74,15 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     stationOnlineDBHelper.stationOwnerLogin(email.getText().toString(), password.getText().toString(), LoginActivity.this);
                 }
                 }
+        });
+
+        //Navigate to customer registration activity
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this, CustomerRegistrationActivity.class);
+                startActivity(i);
+            }
         });
     }
 
