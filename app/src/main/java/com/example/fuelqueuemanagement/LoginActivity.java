@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(LoginActivity.this, CustomerRegistrationActivity.class);
+                Intent i = new Intent(LoginActivity.this, SelectUserSignUp.class);
                 startActivity(i);
             }
         });

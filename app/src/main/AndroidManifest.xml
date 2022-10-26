@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FuelQueueManagement"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SelectUserSignUp"
+            android:exported="false" />
+        <activity
             android:name=".StationOwnerHomeActivity"
             android:exported="false">
             <meta-data
@@ -33,7 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".CustomerRegistrationActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".StationOwnerRegistrationActivity"
             android:exported="true" />
