@@ -47,6 +47,9 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
 
+        //Initialize customer DBHelper object
+        DbHelper = new customerDBHelper(LoginActivity.this);
+
         //Spinner tutorial resource: https://www.youtube.com/watch?v=zSgrMVt_MFg
         usersSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         List<String> users = new ArrayList<String>();
@@ -65,14 +68,15 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     Login();
                 }
                 //station owner login
-                else if (userType.equals("Station Owner")){}
-                StationOnlineDBHelper stationOnlineDBHelper = new StationOnlineDBHelper();
-                stationOnlineDBHelper.stationOwnerLogin(email.getText().toString(), password.getText().toString(), LoginActivity.this);
-            }
+                else if (userType.equals("Station Owner")) {
+                    StationOnlineDBHelper stationOnlineDBHelper = new StationOnlineDBHelper();
+                    stationOnlineDBHelper.stationOwnerLogin(email.getText().toString(), password.getText().toString(), LoginActivity.this);
+                }
+                }
         });
-
     }
 
+        //Handles customer login - Search first in local sqlite database. If user is not found locally, search in online database
         private void Login() {
         //verify user login with sqlite
             if (DbHelper.login(email.getText().toString().trim()
@@ -85,19 +89,23 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                 loggedUser = "customer";
                 startActivity(accountsIntent);
             } else {
-                Toast.makeText(LoginActivity.this, "Invalid Username/Password", Toast.LENGTH_SHORT).show();
+                //Verify user with online database
+                DbHelper = new customerDBHelper(LoginActivity.this);
+                DbHelper.customerLogin(email.getText().toString(), password.getText().toString(), LoginActivity.this);
+
             }
         }
 
         //Empty text fields after login
         private void emptyInputEditText() {
+            //Empty form field after login
             email.setText(null);
             password.setText(null);
         }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // Get user type
+        // Get user type from spinner
         userType = parent.getItemAtPosition(position).toString();
     }
     public void onNothingSelected(AdapterView<?> arg0) {
