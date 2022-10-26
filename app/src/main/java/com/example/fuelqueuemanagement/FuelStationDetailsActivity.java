@@ -25,7 +25,7 @@ import java.util.TimerTask;
 
 public class FuelStationDetailsActivity extends AppCompatActivity {
 
-    TextView stationName, address, fuelStatus, pqlength, dqlength;
+    TextView stationName, address, petrolFuelStatus, dieselFuelStatus, pqlength, dqlength;
     Button beforepump;
     Handler handler = new Handler();
     Runnable runnable;
@@ -36,8 +36,6 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_station_details);
         Log.e("Station", SessionHandler.station.getStationName());
-
-        beforepump = findViewById(R.id.beforePump);
 
         stationModel stationModel = SessionHandler.station;
 
@@ -50,13 +48,16 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
 
         stationName = findViewById(R.id.stationName);
         address = findViewById(R.id.address);
-        fuelStatus = findViewById(R.id.fuelStatus);
         pqlength = findViewById(R.id.pqlength);
         dqlength = findViewById(R.id.dqlength);
+        beforepump = findViewById(R.id.beforePump);
+        petrolFuelStatus = findViewById(R.id.petrolFuelStatus);
+        dieselFuelStatus = findViewById(R.id.dieselFuelStatus);
 
         stationName.setText(stationModel.getStationName());
         address.setText(stationModel.getAddress());
-        fuelStatus.setText(stationModel.getPetrolAvailability());
+        petrolFuelStatus.setText(stationModel.getPetrolAvailability());
+        dieselFuelStatus.setText(stationModel.getDieselAvailability());
         pqlength.setText(Integer.toString(stationModel.getPetrolQueueLength()));
         dqlength.setText(Integer.toString(stationModel.getDieselQueueLength()));
 

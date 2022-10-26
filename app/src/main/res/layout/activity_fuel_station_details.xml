@@ -139,7 +139,7 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <TextView
-        android:id="@+id/fuelStatus"
+        android:id="@+id/petrolFuelStatus"
         android:layout_width="107dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
@@ -158,7 +158,7 @@
         app:layout_constraintVertical_bias="0.672" />
 
     <TextView
-        android:id="@+id/username4"
+        android:id="@+id/dieselFuelStatus"
         android:layout_width="107dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
@@ -229,16 +229,16 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Waiting Time"
+        android:text="Diesel Fuel Status"
         android:textColor="@color/btn_background"
         android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.745" />
 
     <TextView
         android:id="@+id/textView14"
@@ -250,10 +250,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.659" />
+        app:layout_constraintVertical_bias="0.665" />
 
     <Button
         android:id="@+id/afterPump"
