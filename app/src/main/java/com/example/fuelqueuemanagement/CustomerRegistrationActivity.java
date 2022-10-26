@@ -26,6 +26,7 @@ import com.example.fuelqueuemanagement.database.StationOnlineDBHelper;
 import com.example.fuelqueuemanagement.database.customerDBHelper;
 import com.example.fuelqueuemanagement.database.customerModel;
 
+//Manage frontend for customer registration activity
 public class CustomerRegistrationActivity extends AppCompatActivity {
 
     Button register, login;
@@ -48,16 +49,17 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
         cDbHelper = new customerDBHelper(CustomerRegistrationActivity.this);
         customermodel = new customerModel();
 
+        //Get UI elements by Id
         username = (EditText) findViewById(R.id.username);
         customerEmail = (EditText) findViewById(R.id.customerEmail);
         password = (EditText) findViewById(R.id.password);
         confirmPassword = (EditText) findViewById(R.id.confirmPassword);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         RadioButtonPetrol=(RadioButton)findViewById(R.id.RadioButtonPetrol);
         RadioButtonDiesel=(RadioButton)findViewById(R.id.RadioButtonDiesel);
 
-
+        //Navigate to login activity
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +72,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AddUser();
+                //Get data as user inputs
                 customerName = username.getText().toString();
                 email = customerEmail.getText().toString();
                 password1 = password.getText().toString();
@@ -77,7 +80,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                 radioButton = (RadioButton) findViewById(selectedId);
                 vehicleType= radioButton.getText().toString();
 
-                //Add station owner data
+                //Add customer data
                 cDbHelper.createCustomer("111111112222222233333387", customerName, email, password1,
                         vehicleType, initialTime, initialTime);
 

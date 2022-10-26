@@ -43,8 +43,5 @@ public class FillingStationProfileActivity extends AppCompatActivity {
         petrolAvailability.setText(stationModel.getPetrolAvailability());
         dieselAvailability.setText(stationModel.getDieselAvailability());
 
-
-
-
     }
 }
