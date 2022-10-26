@@ -125,6 +125,7 @@ public class StationOnlineDBHelper {
                                 stationModel stationModel = new stationModel(stationId, stationName, email, address,
                                         password, petrolAvailability, dieselAvailability, petrolQueueLength, dieselQueueLength);
                                 stationModelList.add(stationModel);
+                                SessionHandler.allStations = stationModelList;
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

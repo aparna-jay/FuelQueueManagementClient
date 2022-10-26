@@ -84,6 +84,10 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                 startActivity(i);
             }
         });
+
+
+        StationOnlineDBHelper stationOnlineDBHelper = new StationOnlineDBHelper();
+        stationOnlineDBHelper.getAllStations(getApplicationContext());
     }
 
         //Handles customer login - Search first in local sqlite database. If user is not found locally, search in online database
