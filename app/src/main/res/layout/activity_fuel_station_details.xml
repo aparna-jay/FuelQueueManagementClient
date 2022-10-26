@@ -47,7 +47,7 @@
         android:padding="12dp"
         android:textColor="@color/btn_background"
         android:textColorHint="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
         android:padding="12dp"
         android:textColor="@color/btn_background"
         android:textColorHint="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:text="Queue Lengths"
         android:textColor="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +129,7 @@
         android:padding="12dp"
         android:textColor="@color/btn_background"
         android:textColorHint="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +140,7 @@
 
     <TextView
         android:id="@+id/petrolFuelStatus"
-        android:layout_width="107dp"
+        android:layout_width="140dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
         android:ems="10"
@@ -148,18 +148,18 @@
         android:padding="12dp"
         android:textColor="@color/btn_background"
         android:textColorHint="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.789"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672" />
+        app:layout_constraintVertical_bias="0.669" />
 
     <TextView
         android:id="@+id/dieselFuelStatus"
-        android:layout_width="107dp"
+        android:layout_width="140dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
         android:ems="10"
@@ -167,14 +167,14 @@
         android:padding="12dp"
         android:textColor="@color/btn_background"
         android:textColorHint="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.778"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <TextView
         android:id="@+id/dqlength"
@@ -186,7 +186,7 @@
         android:padding="12dp"
         android:textColor="@color/btn_background"
         android:textColorHint="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -201,14 +201,14 @@
         android:layout_height="wrap_content"
         android:text="Diesel Queue Lengths"
         android:textColor="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.58" />
 
     <TextView
         android:id="@+id/textView16"
@@ -216,14 +216,13 @@
         android:layout_height="wrap_content"
         android:text="Petrol Queue Lengths"
         android:textColor="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView15"
@@ -231,7 +230,7 @@
         android:layout_height="wrap_content"
         android:text="Diesel Fuel Status"
         android:textColor="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -246,7 +245,7 @@
         android:layout_height="wrap_content"
         android:text="Petrol Fuel Status"
         android:textColor="@color/btn_background"
-        android:textSize="19sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
