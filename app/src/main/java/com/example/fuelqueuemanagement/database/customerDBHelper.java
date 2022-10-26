@@ -9,11 +9,19 @@ package com.example.fuelqueuemanagement.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.fuelqueuemanagement.MainActivity;
+import com.example.fuelqueuemanagement.SessionHandler;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -21,8 +29,12 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
+//Manage customer database operations
 public class customerDBHelper extends SQLiteOpenHelper{
     // Database configurations
     private static final int DATABASE_VERSION = 1;
@@ -115,7 +127,7 @@ public class customerDBHelper extends SQLiteOpenHelper{
     }
 
     //Set IIS base url
-    private String BASE_URL = "http://192.168.1.3:8080/api";
+    private String BASE_URL = "http://192.168.43.140:8080/api";
 
 
     /* Resources
@@ -164,5 +176,53 @@ public class customerDBHelper extends SQLiteOpenHelper{
             }
         });
         thread.start();
+    }
+
+    //Resource - https://www.geeksforgeeks.org/crud-operation-in-mysql-using-php-volley-android-read-data/
+    //Customer login
+    public void customerLogin(String email, String password, Context context) {
+        String URL = BASE_URL + "/Station/GetCustomerByEmail/" + email;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        try {
+            JSONObject object = new JSONObject();
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(com.android.volley.Request.Method.GET, URL, null,
+                    new com.android.volley.Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.i("Response", response.toString());
+                            try {
+                                //Extract email and password from response
+                                String responseEmail = response.getString("email");
+                                String responsePassword = response.getString("password");
+
+                                //validate email and password
+                                if(responseEmail.equals(email) && responsePassword.equals(password)){
+                                    //Store logged user's id
+                                    SessionHandler.currentUser = response.getString("customerId");
+                                    //start activity after login
+                                    Intent intent = new Intent(context, MainActivity.class);
+                                    context.startActivity(intent);
+                                    Log.i("current User",SessionHandler.currentUser);
+                                }
+                                else{
+                                    Log.e("Error", "User not verified");
+                                    Toast.makeText(context, "Incorrect password", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(context, "User not found", Toast.LENGTH_LONG).show();
+                    Log.i("Error", error.toString());
+                }
+            });
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
