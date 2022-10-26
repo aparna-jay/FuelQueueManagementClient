@@ -143,7 +143,7 @@ public class customerDBHelper extends SQLiteOpenHelper{
 
     //Set IIS base url
     private String BASE_URL = "http://192.168.43.140:8080/api";
-  //  private String BASE_URL = "http://192.168.1.3:8080/api";
+//    private String BASE_URL = "http://192.168.1.5:8080/api";
 
     /* Resources
     POST request with okhttp- https://www.baeldung.com/okhttp-post
