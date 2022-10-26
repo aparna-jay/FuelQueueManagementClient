@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +42,10 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
     CustomAdapter customAdapter;
     List<stationModel> stationModelList = new ArrayList<>();
     String selectStation;
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,7 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
                         stationOnlineDBHelper.IncreaseDieselQueueLength(selectStation);
                     }
                     Intent i = new Intent(SearchFuelStationsActivity.this, FuelStationDetailsActivity.class);
+                    i.putExtra("stationId", selectStation);
                     startActivity(i);
                 }
                 else{
@@ -218,5 +224,25 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
             };
             return filter;
         }
+    }
+
+    //Use handlers to refresh activity - https://www.tutorialspoint.com/how-to-run-a-method-every-10-seconds-in-android
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable); //stop handler when activity not visible super.onPause();
     }
 }
