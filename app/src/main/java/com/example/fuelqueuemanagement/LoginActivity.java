@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             if (DbHelper.login(email.getText().toString().trim()
                     , password.getText().toString().trim())) {
                 user = "customer";
-                Intent accountsIntent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent accountsIntent = new Intent(LoginActivity.this, CustomerHome.class);
                 accountsIntent.putExtra("EMAIL", email.getText().toString().trim());
                 emptyInputEditText();
                 //set logged user type as customer
