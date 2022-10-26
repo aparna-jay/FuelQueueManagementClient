@@ -20,6 +20,9 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".CustomerHome"
+            android:exported="false" />
+        <activity
             android:name=".FindNearFuelStations"
             android:exported="false" />
         <activity
