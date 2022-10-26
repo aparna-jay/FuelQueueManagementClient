@@ -26,6 +26,8 @@ import com.example.fuelqueuemanagement.database.StationOnlineDBHelper;
 import com.example.fuelqueuemanagement.database.customerDBHelper;
 import com.example.fuelqueuemanagement.database.customerModel;
 
+import java.util.Random;
+
 //Manage frontend for customer registration activity
 public class CustomerRegistrationActivity extends AppCompatActivity {
 
@@ -81,11 +83,22 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                 vehicleType= radioButton.getText().toString();
 
                 //Add customer data
-                cDbHelper.createCustomer("111111112222222233333387", customerName, email, password1,
+                customerId = generateInt();
+                cDbHelper.createCustomer(customerId, customerName, email, password1,
                         vehicleType, initialTime, initialTime);
 
             }
         });
+    }
+
+    //Generate 24 digit random numbers - https://stackoverflow.com/questions/17306475/java-random-numbers-generator-which-generate-twenty-four-numbers
+    private String generateInt() {
+        StringBuilder str = new StringBuilder();
+        Random random = new Random();
+        for(int i = 0; i < 24; i++) {
+            str.append(random.nextInt(10));
+        }
+        return str.toString();
     }
 
     private void AddUser() {

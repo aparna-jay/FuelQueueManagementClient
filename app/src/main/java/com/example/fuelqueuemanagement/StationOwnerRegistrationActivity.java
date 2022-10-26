@@ -18,6 +18,8 @@ import android.widget.EditText;
 
 import com.example.fuelqueuemanagement.database.StationOnlineDBHelper;
 
+import java.util.Random;
+
 //Manage frontend for station owner registration activity
 public class StationOwnerRegistrationActivity extends AppCompatActivity {
 
@@ -56,7 +58,8 @@ public class StationOwnerRegistrationActivity extends AppCompatActivity {
                 password = txt_password.getText().toString();
 
                 //Add station owner data
-                stationOnlineDBHelper.createStationOwner("111111112222222233333344", stationName, email, address, password,
+                stationId = generateInt();
+                stationOnlineDBHelper.createStationOwner(stationId, stationName, email, address, password,
                         FuelAvailability, FuelAvailability, initialQueueLength, initialQueueLength);
             }
         });
@@ -69,5 +72,15 @@ public class StationOwnerRegistrationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    //Generate 24 digit random numbers - https://stackoverflow.com/questions/17306475/java-random-numbers-generator-which-generate-twenty-four-numbers
+    private String generateInt() {
+        StringBuilder str = new StringBuilder();
+        Random random = new Random();
+        for(int i = 0; i < 24; i++) {
+            str.append(random.nextInt(10));
+        }
+        return str.toString();
     }
 }
