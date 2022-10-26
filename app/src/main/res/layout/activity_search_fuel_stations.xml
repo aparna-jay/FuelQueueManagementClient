@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:text="Find filling stations"
         android:textColor="@color/btn_background"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:textSize="19sp"
         android:layout_gravity="center"
         android:textStyle="bold" />
