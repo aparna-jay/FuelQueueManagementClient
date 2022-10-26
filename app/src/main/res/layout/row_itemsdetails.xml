@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/stationID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="60dp"
+            android:text="StationID"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stationID"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="60dp"
+            android:text="Names"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:text="Emails"
+            android:layout_marginStart="140dp"
+            android:paddingTop="2dp"
+            android:layout_below="@id/name"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/pqueuel"
+            android:layout_width="match_parent"
+            android:text="PetrolQueue"
+            android:layout_marginStart="140dp"
+            android:paddingTop="2dp"
+            android:layout_below="@id/email"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/dqueuel"
+            android:layout_width="match_parent"
+            android:text="DieselQueue"
+            android:layout_marginStart="140dp"
+            android:paddingTop="2dp"
+            android:layout_below="@id/pqueuel"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/pstatus"
+            android:layout_width="match_parent"
+            android:text="PetrolStatus"
+            android:layout_marginStart="140dp"
+            android:paddingTop="2dp"
+            android:layout_below="@id/dqueuel"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/dstatus"
+            android:layout_width="match_parent"
+            android:text="DeiselStatus"
+            android:layout_marginStart="140dp"
+            android:paddingTop="2dp"
+            android:layout_below="@id/pstatus"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="60dp"
+            android:text="Station Id"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Station Name"
+            android:layout_below="@id/textView2"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:layout_below="@id/textView6"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView91"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Petrol Queue Length"
+            android:layout_below="@id/textView9"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView92"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diesel Queue Length"
+            android:layout_below="@id/textView91"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView93"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Petrol Status"
+            android:layout_below="@id/textView92"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView94"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diesel Status"
+            android:layout_below="@id/textView93"
+            android:textColor="@color/btn_background"
+            android:textStyle="bold"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
