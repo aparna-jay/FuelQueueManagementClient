@@ -86,6 +86,8 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                 customerId = generateInt();
                 cDbHelper.createCustomer(customerId, customerName, email, password1,
                         vehicleType, initialTime, initialTime);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
 
             }
         });

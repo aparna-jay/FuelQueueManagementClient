@@ -61,6 +61,8 @@ public class StationOwnerRegistrationActivity extends AppCompatActivity {
                 stationId = generateInt();
                 stationOnlineDBHelper.createStationOwner(stationId, stationName, email, address, password,
                         FuelAvailability, FuelAvailability, initialQueueLength, initialQueueLength);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 
