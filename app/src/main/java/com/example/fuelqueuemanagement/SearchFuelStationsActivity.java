@@ -61,8 +61,12 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 if(selectStation != null) {
-                    stationOnlineDBHelper.IncreasePetrolQueueLength(selectStation);
-                }
+                    if(SessionHandler.vehicleType.equals("Petrol")) {
+                        stationOnlineDBHelper.IncreasePetrolQueueLength(selectStation);
+                    }
+                    else if(SessionHandler.vehicleType.equals("Diesel")){
+                        stationOnlineDBHelper.IncreaseDieselQueueLength(selectStation);
+                    }                }
                 else{
                     Toast.makeText(SearchFuelStationsActivity.this, "Please select station", Toast.LENGTH_SHORT).show();
                 }
