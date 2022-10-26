@@ -267,7 +267,6 @@ public class StationOnlineDBHelper {
         thread.start();
     }
 
-
     //Resource - https://www.geeksforgeeks.org/crud-operation-in-mysql-using-php-volley-android-read-data/
     //Station owner login
     public void stationOwnerLogin(String email, String password, Context context) {
