@@ -37,8 +37,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.099" />
 
-    <EditText
-        android:id="@+id/username"
+    <TextView
+        android:id="@+id/stationName"
         android:layout_width="298dp"
         android:layout_height="47dp"
         android:background="@drawable/rounded_corners"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.209" />
 
-    <EditText
+    <TextView
         android:id="@+id/address"
         android:layout_width="298dp"
         android:layout_height="47dp"
@@ -119,8 +119,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.428" />
 
-    <EditText
-        android:id="@+id/username1"
+    <TextView
+        android:id="@+id/pqlength"
         android:layout_width="107dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
@@ -138,8 +138,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
 
-    <EditText
-        android:id="@+id/username3"
+    <TextView
+        android:id="@+id/fuelStatus"
         android:layout_width="107dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
@@ -157,7 +157,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.672" />
 
-    <EditText
+    <TextView
         android:id="@+id/username4"
         android:layout_width="107dp"
         android:layout_height="46dp"
@@ -176,8 +176,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.753" />
 
-    <EditText
-        android:id="@+id/username2"
+    <TextView
+        android:id="@+id/dqlength"
         android:layout_width="107dp"
         android:layout_height="46dp"
         android:background="@drawable/rounded_corners"
@@ -244,7 +244,7 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fuel Status"
+        android:text="Petrol Fuel Status"
         android:textColor="@color/btn_background"
         android:textSize="19sp"
         android:textStyle="bold"

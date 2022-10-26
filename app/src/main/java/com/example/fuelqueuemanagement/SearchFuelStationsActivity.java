@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -66,13 +67,15 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
                     }
                     else if(SessionHandler.vehicleType.equals("Diesel")){
                         stationOnlineDBHelper.IncreaseDieselQueueLength(selectStation);
-                    }                }
+                    }
+                    Intent i = new Intent(SearchFuelStationsActivity.this, FuelStationDetailsActivity.class);
+                    startActivity(i);
+                }
                 else{
                     Toast.makeText(SearchFuelStationsActivity.this, "Please select station", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-//        List<stationModel> stations = stationOnlineDBHelper.getAllStations(getApplicationContext());
 
     }
 
@@ -162,8 +165,7 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                      selectStation = stationModelListFiltered.get(position).getStationId();
-
-                    // startActivity(new Intent(MainActivity.this,ItemsPreviewActivity.class).putExtra("items",itemsModelListFiltered.get(position)));
+                     SessionHandler.station = stationModelListFiltered.get(position);
                 }
             });
 
