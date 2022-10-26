@@ -42,7 +42,8 @@ import java.util.List;
 public class StationOnlineDBHelper {
 
     //Set IIS base url
-    private String BASE_URL = "http://192.168.43.140:8080/api";
+//    private String BASE_URL = "http://192.168.43.140:8080/api";
+    private String BASE_URL = "http://192.168.1.3:8080/api";
 
 
     /* Resources

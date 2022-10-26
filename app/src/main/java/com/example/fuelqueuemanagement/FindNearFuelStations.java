@@ -133,14 +133,23 @@ public class FindNearFuelStations extends AppCompatActivity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.row_items,null);
+            View view = getLayoutInflater().inflate(R.layout.row_itemsdetails,null);
 
-
+            TextView id = view.findViewById(R.id.stationID);
             TextView names = view.findViewById(R.id.name);
             TextView emails = view.findViewById(R.id.email);
+            TextView pqueuels = view.findViewById(R.id.pqueuel);
+            TextView dqueuels = view.findViewById(R.id.dqueuel);
+            TextView pstatuss = view.findViewById(R.id.pstatus);
+            TextView dstatuss = view.findViewById(R.id.dstatus);
 
+            id.setText(stationModelListFiltered.get(position).getStationId());
             names.setText(stationModelListFiltered.get(position).getStationName());
             emails.setText(stationModelListFiltered.get(position).getEmail());
+            pqueuels.setText(Integer.toString(stationModelListFiltered.get(position).getPetrolQueueLength()));
+            dqueuels.setText(Integer.toString(stationModelListFiltered.get(position).getDieselQueueLength()));
+            pstatuss.setText(stationModelListFiltered.get(position).getPetrolAvailability());
+            dstatuss.setText(stationModelListFiltered.get(position).getDieselAvailability());
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
