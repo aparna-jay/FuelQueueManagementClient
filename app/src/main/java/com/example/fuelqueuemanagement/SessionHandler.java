@@ -17,4 +17,5 @@ public class SessionHandler {
     public static stationModel station;
     public static List<stationModel> allStations;
     public static String vehicleType;
+    public static String stationId;
 }

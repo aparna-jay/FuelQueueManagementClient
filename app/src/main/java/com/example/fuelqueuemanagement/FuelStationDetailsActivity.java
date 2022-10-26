@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.fuelqueuemanagement.database.StationOnlineDBHelper;
+
 public class FuelStationDetailsActivity extends AppCompatActivity {
 
     TextView stationName, address, fuelStatus, pqlength, dqlength;

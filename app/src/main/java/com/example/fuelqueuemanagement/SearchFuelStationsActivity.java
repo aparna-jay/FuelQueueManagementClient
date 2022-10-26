@@ -50,6 +50,9 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
         joinQueue = findViewById(R.id.joinQueue);
         stationOnlineDBHelper = new StationOnlineDBHelper();
 
+        StationOnlineDBHelper stationOnlineDBHelper = new StationOnlineDBHelper();
+        stationOnlineDBHelper.getAllStations(getApplicationContext());
+
         listView = findViewById(R.id.listview);
 
         stationModelList = SessionHandler.allStations;
