@@ -13,6 +13,13 @@
         android:theme="@style/Theme.FuelQueueManagement"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".StationOwnerHomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CustomerHome"
             android:exported="false" />
         <activity
