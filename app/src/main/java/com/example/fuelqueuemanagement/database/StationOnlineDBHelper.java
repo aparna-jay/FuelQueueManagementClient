@@ -9,6 +9,8 @@ package com.example.fuelqueuemanagement.database;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -256,6 +258,72 @@ public class StationOnlineDBHelper {
                     try {
                         Response response = call.execute();
                         Log.e("Response", response.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
+
+    //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
+    //Update petrol fuel status
+    public void UpdatePetrolStatus(String id, String availability, Context context) {
+        //Create new thread to prevent network operations on main thread
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    //create empty request body
+                    RequestBody body = RequestBody.create(null, new byte[]{});
+                    //build http request
+                    Request request = new Request.Builder()
+                            .url(BASE_URL + "/Station/UpdatePetrolFuelStatus/" + id + "?availability=" + availability)
+                            .put(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    try {
+                        Response response = call.execute();
+                        Log.e("Response", response.toString());
+
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
+
+    //Resources - Make okhttp request without body - https://stackoverflow.com/questions/35743516/how-to-make-okhttp-post-request-without-a-request-body
+    //Update diesel fuel status
+    public void UpdateDieselStatus(String id, String availability, Context context) {
+        //Create new thread to prevent network operations on main thread
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    //create empty request body
+                    RequestBody body = RequestBody.create(null, new byte[]{});
+                    //build http request
+                    Request request = new Request.Builder()
+                            .url(BASE_URL + "/Station/UpdateDieselFuelStatus/" + id + "?availability=" + availability)
+                            .put(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    try {
+                        Response response = call.execute();
+                        Log.e("Response", response.toString());
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
