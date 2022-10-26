@@ -32,6 +32,7 @@ import com.example.fuelqueuemanagement.database.stationModel;
 import java.util.ArrayList;
 import java.util.List;
 
+//Resources - Custom Adapter - https://www.youtube.com/watch?v=8QDTiOUOfKQ, https://larntech.net/android-listview-with-searchview-and-onitemclicklistener/
 public class FindNearFuelStations extends AppCompatActivity {
 
     List<stationModel> stationModelList = new ArrayList<>();
@@ -49,13 +50,15 @@ public class FindNearFuelStations extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
 
+        //Get all stations from session
         stationModelList = SessionHandler.allStations;
 
+        //Define custom adapter
         customAdapter = new CustomAdapter(stationModelList,this);
-
         listView.setAdapter(customAdapter);
     }
 
+    //Create search menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -73,18 +76,11 @@ public class FindNearFuelStations extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 Log.e("Main"," data search"+newText);
-
                 customAdapter.getFilter().filter(newText);
-
-
-
                 return true;
             }
         });
-
-
         return true;
 
     }
@@ -94,16 +90,13 @@ public class FindNearFuelStations extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-
-
         if(id == R.id.searchView){
-
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
+    //Custom adapter class
     public class CustomAdapter extends BaseAdapter implements Filterable {
 
         private List<stationModel> stationModelli;
@@ -131,6 +124,7 @@ public class FindNearFuelStations extends AppCompatActivity {
             return position;
         }
 
+        //Get selected station details
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             View view = getLayoutInflater().inflate(R.layout.row_itemsdetails,null);
@@ -154,9 +148,6 @@ public class FindNearFuelStations extends AppCompatActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("main activity","item clicked");
-                   // startActivity(new Intent(MainActivity.this,ItemsPreviewActivity.class).putExtra("items",itemsModelListFiltered.get(position)));
-
                 }
             });
 

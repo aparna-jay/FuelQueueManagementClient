@@ -34,7 +34,7 @@ import com.example.fuelqueuemanagement.database.stationModel;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Resources - Custom Adapter - https://www.youtube.com/watch?v=8QDTiOUOfKQ, https://larntech.net/android-listview-with-searchview-and-onitemclicklistener/
 public class SearchFuelStationsActivity extends AppCompatActivity {
     ListView listView;
     StationOnlineDBHelper stationOnlineDBHelper;
@@ -55,17 +55,20 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
         joinQueue = findViewById(R.id.joinQueue);
         stationOnlineDBHelper = new StationOnlineDBHelper();
 
+        //Refresh station list
         StationOnlineDBHelper stationOnlineDBHelper = new StationOnlineDBHelper();
         stationOnlineDBHelper.getAllStations(getApplicationContext());
 
         listView = findViewById(R.id.listview);
 
+        //Get all stations from session
         stationModelList = SessionHandler.allStations;
 
+        //Define custom adapter
         customAdapter = new CustomAdapter(stationModelList,this);
-
         listView.setAdapter(customAdapter);
 
+        //Update queue length
         joinQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -88,6 +91,7 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
 
     }
 
+    //Create search menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -129,7 +133,7 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+//Custom adapter class
     public class CustomAdapter extends BaseAdapter implements Filterable {
 
         private List<stationModel> stationModelli;
@@ -157,6 +161,7 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
             return position;
         }
 
+    //Get selected station details
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             View view = getLayoutInflater().inflate(R.layout.row_items,null);

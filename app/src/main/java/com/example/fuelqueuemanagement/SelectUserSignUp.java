@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+//Select user type for registration
 public class SelectUserSignUp extends AppCompatActivity {
 
     ImageButton signUpCustomer, signUpOwner;
@@ -26,7 +27,7 @@ public class SelectUserSignUp extends AppCompatActivity {
         signUpCustomer = findViewById(R.id.signUpCustomer);
         signUpOwner = findViewById(R.id.signUpOwner);
 
-        //Navigate to SearchFuelStationActivity
+        //Navigate to customer registration
         signUpCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,7 +36,7 @@ public class SelectUserSignUp extends AppCompatActivity {
             }
         });
 
-        //Navigate to FindNearFuelStations activity
+        //Navigate to station owner registration
         signUpOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

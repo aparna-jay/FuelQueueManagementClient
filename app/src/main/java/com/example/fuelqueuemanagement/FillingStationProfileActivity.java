@@ -37,9 +37,8 @@ public class FillingStationProfileActivity extends AppCompatActivity {
         //Get logged station data
         stationModel = SessionHandler.station;
 
+        //Initialize StationOnlineDBHelper class
         dbHelper = new StationOnlineDBHelper();
-
-
 
         stationName = findViewById(R.id.stationName);
         stationID = findViewById(R.id.stationID);
@@ -58,9 +57,11 @@ public class FillingStationProfileActivity extends AppCompatActivity {
         petrolAvailability.setText(stationModel.getPetrolAvailability());
         dieselAvailability.setText(stationModel.getDieselAvailability());
 
+        //Get fuel status
         petrolStatus = stationModel.getPetrolAvailability();
         dieselStatus = stationModel.getDieselAvailability();
 
+        //Set fuel status
         if(petrolStatus.equals("Available")){
             ptrl_changeavailability.setText("Mark as Finished");
         }
@@ -75,19 +76,24 @@ public class FillingStationProfileActivity extends AppCompatActivity {
             dsl_changeavailability.setText("Mark as Available");
         }
 
-
+        //Resource - Handlers - https://medium.com/@hasperong/thread-delay-time-in-android-using-java-1a4c9e6830f8
+        //Change petrol fuel status
         ptrl_changeavailability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 if(petrolStatus.equals("Available")){
+
+                    //Update petrol status
                     dbHelper.UpdatePetrolStatus(stationModel.getStationId(), "Not Available", FillingStationProfileActivity.this);
 
+                    //Use handler to delay thread execution
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             dbHelper.getStationById(stationModel.getStationId(), FillingStationProfileActivity.this);
                             final Handler handler = new Handler();
+                            //refresh activity using handler
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -101,9 +107,11 @@ public class FillingStationProfileActivity extends AppCompatActivity {
                     }, 1000);
                 }
                 else if(petrolStatus.equals("Not Available")){
+                    //Update petrol status
                     dbHelper.UpdatePetrolStatus(stationModel.getStationId(), "Available", FillingStationProfileActivity.this);
-
+                    //Use handler to delay thread execution
                     final Handler handler = new Handler();
+                    //refresh activity using handler
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -124,18 +132,22 @@ public class FillingStationProfileActivity extends AppCompatActivity {
             }
         });
 
+        //Resource - Handlers - https://medium.com/@hasperong/thread-delay-time-in-android-using-java-1a4c9e6830f8
+        //Change diesel fuel status
         dsl_changeavailability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 if(dieselStatus.equals("Available")){
+                    //Update diesel status
                     dbHelper.UpdateDieselStatus(stationModel.getStationId(), "Not Available", FillingStationProfileActivity.this);
-
+                    //Use handler to delay thread execution
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             dbHelper.getStationById(stationModel.getStationId(), FillingStationProfileActivity.this);
                             final Handler handler = new Handler();
+                            //refresh activity using handler
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -149,9 +161,11 @@ public class FillingStationProfileActivity extends AppCompatActivity {
                     }, 1000);
                 }
                 else if(dieselStatus.equals("Not Available")){
+                    //Update diesel status
                     dbHelper.UpdateDieselStatus(stationModel.getStationId(), "Available", FillingStationProfileActivity.this);
-
+                    //Use handler to delay thread execution
                     final Handler handler = new Handler();
+                    //refresh activity using handler
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
