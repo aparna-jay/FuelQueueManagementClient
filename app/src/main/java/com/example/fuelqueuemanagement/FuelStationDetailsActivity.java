@@ -26,10 +26,11 @@ import java.util.TimerTask;
 public class FuelStationDetailsActivity extends AppCompatActivity {
 
     TextView stationName, address, petrolFuelStatus, dieselFuelStatus, pqlength, dqlength;
-    Button beforepump;
+    Button beforepump, afterpump;
     Handler handler = new Handler();
     Runnable runnable;
     int delay = 3000;
+    StationOnlineDBHelper stationOnlineDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
         Log.e("Station", SessionHandler.station.getStationName());
 
         stationModel stationModel = SessionHandler.station;
+        stationOnlineDBHelper = new StationOnlineDBHelper();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -50,6 +52,7 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
         address = findViewById(R.id.address);
         pqlength = findViewById(R.id.pqlength);
         dqlength = findViewById(R.id.dqlength);
+        afterpump = findViewById(R.id.afterPump);
         beforepump = findViewById(R.id.beforePump);
         petrolFuelStatus = findViewById(R.id.petrolFuelStatus);
         dieselFuelStatus = findViewById(R.id.dieselFuelStatus);
@@ -64,11 +67,32 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
         beforepump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // timer.cancel();
-                Intent i = new Intent(FuelStationDetailsActivity.this, LoginActivity.class);
+                if(SessionHandler.vehicleType.equals("Petrol")) {
+                    stationOnlineDBHelper.DecreasePetrolQueueLength(stationModel.getStationId());
+                }
+                else if(SessionHandler.vehicleType.equals("Diesel")){
+                    stationOnlineDBHelper.DecreaseDieselQueueLength(stationModel.getStationId());
+                }
+                Intent i = new Intent(FuelStationDetailsActivity.this, CustomerHome.class);
                 startActivity(i);
             }
         });
+
+        afterpump.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SessionHandler.vehicleType.equals("Petrol")) {
+                    stationOnlineDBHelper.DecreasePetrolQueueLength(stationModel.getStationId());
+                }
+                else if(SessionHandler.vehicleType.equals("Diesel")){
+                    stationOnlineDBHelper.DecreaseDieselQueueLength(stationModel.getStationId());
+                }
+                Intent i = new Intent(FuelStationDetailsActivity.this, CustomerHome.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 
     //Use handlers to refresh activity - https://www.tutorialspoint.com/how-to-run-a-method-every-10-seconds-in-android
