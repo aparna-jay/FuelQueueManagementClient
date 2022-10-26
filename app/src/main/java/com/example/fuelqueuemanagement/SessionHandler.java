@@ -7,7 +7,10 @@
 
 package com.example.fuelqueuemanagement;
 
+import com.example.fuelqueuemanagement.database.stationModel;
+
 //Store login session details
 public class SessionHandler {
     public static String currentUser;
+    public static stationModel station;
 }

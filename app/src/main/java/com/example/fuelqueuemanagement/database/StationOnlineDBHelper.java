@@ -7,22 +7,20 @@
 
 package com.example.fuelqueuemanagement.database;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.fuelqueuemanagement.LoginActivity;
+import com.example.fuelqueuemanagement.FillingStationProfileActivity;
 import com.example.fuelqueuemanagement.MainActivity;
 import com.example.fuelqueuemanagement.SessionHandler;
+import com.example.fuelqueuemanagement.StationOwnerHomeActivity;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -284,6 +282,7 @@ public class StationOnlineDBHelper {
                             Log.i("Response", response.toString());
                             try {
                                 //Extract email and password from response
+
                                 String responseEmail = response.getString("email");
                                 String responsePassword = response.getString("password");
 
@@ -291,8 +290,11 @@ public class StationOnlineDBHelper {
                                 if(responseEmail.equals(email) && responsePassword.equals(password)){
                                     //Store logged user's id
                                     SessionHandler.currentUser = response.getString("stationId");
+                                    //Get station data
+                                    getStationById(SessionHandler.currentUser, context);
+
                                     //start activity after login
-                                    Intent intent = new Intent(context, MainActivity.class);
+                                    Intent intent = new Intent(context, StationOwnerHomeActivity.class);
                                     context.startActivity(intent);
                                     Log.i("current User",SessionHandler.currentUser);
                                 }
@@ -308,6 +310,55 @@ public class StationOnlineDBHelper {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(context, "User not found", Toast.LENGTH_LONG).show();
+                    Log.i("Error", error.toString());
+                }
+            });
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Resource - https://www.geeksforgeeks.org/crud-operation-in-mysql-using-php-volley-android-read-data/
+    //Get station by id
+    public void getStationById(String id, Context context) {
+        String URL = BASE_URL + "/Station/GetStationById/" + id;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        try {
+            JSONObject object = new JSONObject();
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(com.android.volley.Request.Method.GET, URL, null,
+                    new com.android.volley.Response.Listener<JSONObject>() {
+                        String responseId, responsePassword, responseName,responseEmail, responseAddress, responsePetrolAvailability, responseDieselAvailability;
+                        int responsePetrolQueueLength, responseDieselQueueLength;
+                        stationModel sModel;
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.i("Response", response.toString());
+                            try {
+                                //Extract data from response
+                                responseId = response.getString("stationId");
+                                responsePassword = response.getString("password");
+                                responseEmail = response.getString("email");
+                                responseName = response.getString("stationName");
+                                responseAddress = response.getString("address");
+                                responsePetrolAvailability = response.getString("petrolAvailability");
+                                responseDieselAvailability = response.getString("dieselAvailability");
+                                responsePetrolQueueLength = response.getInt("petrolQueueLength");
+                                responseDieselQueueLength = response.getInt("dieselQueueLength");
+
+                                //create new station object
+                                 sModel = new stationModel(responseId, responseName,responseEmail, responseAddress, responsePassword, responsePetrolAvailability,
+                                         responseDieselAvailability, responsePetrolQueueLength, responseDieselQueueLength);
+                                 SessionHandler.station = sModel;
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
                     Log.i("Error", error.toString());
                 }
             });
