@@ -24,6 +24,7 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fuelqueuemanagement.database.StationOnlineDBHelper;
 import com.example.fuelqueuemanagement.database.stationModel;
@@ -38,6 +39,7 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
     Button joinQueue;
     CustomAdapter customAdapter;
     List<stationModel> stationModelList = new ArrayList<>();
+    String selectStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,12 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
         joinQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                stationOnlineDBHelper.IncreasePetrolQueueLength("787332222508283509383729");
+                if(selectStation != null) {
+                    stationOnlineDBHelper.IncreasePetrolQueueLength(selectStation);
+                }
+                else{
+                    Toast.makeText(SearchFuelStationsActivity.this, "Please select station", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 //        List<stationModel> stations = stationOnlineDBHelper.getAllStations(getApplicationContext());
@@ -82,9 +89,6 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-                Log.e("Main"," data search"+newText);
-
                 customAdapter.getFilter().filter(newText);
                 return true;
             }
@@ -144,16 +148,18 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
 
             TextView names = view.findViewById(R.id.name);
             TextView emails = view.findViewById(R.id.email);
+            TextView id = view.findViewById(R.id.stationID);
 
             names.setText(stationModelListFiltered.get(position).getStationName());
             emails.setText(stationModelListFiltered.get(position).getEmail());
+            id.setText(stationModelListFiltered.get(position).getStationId());
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("main activity","item clicked");
-                    // startActivity(new Intent(MainActivity.this,ItemsPreviewActivity.class).putExtra("items",itemsModelListFiltered.get(position)));
+                     selectStation = stationModelListFiltered.get(position).getStationId();
 
+                    // startActivity(new Intent(MainActivity.this,ItemsPreviewActivity.class).putExtra("items",itemsModelListFiltered.get(position)));
                 }
             });
 
