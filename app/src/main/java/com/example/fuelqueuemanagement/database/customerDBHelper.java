@@ -20,6 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.fuelqueuemanagement.CustomerHome;
 import com.example.fuelqueuemanagement.MainActivity;
 import com.example.fuelqueuemanagement.SessionHandler;
 import com.squareup.okhttp.Call;
@@ -201,7 +202,7 @@ public class customerDBHelper extends SQLiteOpenHelper{
                                     //Store logged user's id
                                     SessionHandler.currentUser = response.getString("customerId");
                                     //start activity after login
-                                    Intent intent = new Intent(context, MainActivity.class);
+                                    Intent intent = new Intent(context, CustomerHome.class);
                                     context.startActivity(intent);
                                     Log.i("current User",SessionHandler.currentUser);
                                 }

@@ -36,7 +36,7 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
                 stationOnlineDBHelper.IncreasePetrolQueueLength("787332222508283509383729");
             }
         });
-        List<stationModel> stations = stationOnlineDBHelper.getAllStations(getApplicationContext());
+//        List<stationModel> stations = stationOnlineDBHelper.getAllStations(getApplicationContext());
 
     }
 }
