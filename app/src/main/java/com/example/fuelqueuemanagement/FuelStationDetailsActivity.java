@@ -23,6 +23,7 @@ import com.example.fuelqueuemanagement.database.stationModel;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//Display fuel station details
 public class FuelStationDetailsActivity extends AppCompatActivity {
 
     TextView stationName, address, petrolFuelStatus, dieselFuelStatus, pqlength, dqlength;
@@ -38,9 +39,11 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fuel_station_details);
         Log.e("Station", SessionHandler.station.getStationName());
 
+        //Get station for the current session
         stationModel stationModel = SessionHandler.station;
         stationOnlineDBHelper = new StationOnlineDBHelper();
 
+        //Get station Id
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String stationId = extras.getString("stationId");
@@ -57,6 +60,7 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
         petrolFuelStatus = findViewById(R.id.petrolFuelStatus);
         dieselFuelStatus = findViewById(R.id.dieselFuelStatus);
 
+        //Set station details
         stationName.setText(stationModel.getStationName());
         address.setText(stationModel.getAddress());
         petrolFuelStatus.setText(stationModel.getPetrolAvailability());
@@ -64,6 +68,8 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
         pqlength.setText(Integer.toString(stationModel.getPetrolQueueLength()));
         dqlength.setText(Integer.toString(stationModel.getDieselQueueLength()));
 
+
+        //Update queue length on exit before refuelling
         beforepump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +84,7 @@ public class FuelStationDetailsActivity extends AppCompatActivity {
             }
         });
 
+        //Update queue length on exit after refuelling
         afterpump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

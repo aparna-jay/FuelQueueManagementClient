@@ -21,7 +21,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fuelqueuemanagement.CustomerHome;
-import com.example.fuelqueuemanagement.MainActivity;
 import com.example.fuelqueuemanagement.SessionHandler;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.MediaType;

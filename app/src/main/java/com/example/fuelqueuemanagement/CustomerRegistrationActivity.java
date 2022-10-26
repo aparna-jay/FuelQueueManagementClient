@@ -70,6 +70,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
             }
         });
 
+        //Register customer
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +83,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
                 radioButton = (RadioButton) findViewById(selectedId);
                 vehicleType= radioButton.getText().toString();
 
-                //Add customer data
+                //Add customer data to online database
                 customerId = generateInt();
                 cDbHelper.createCustomer(customerId, customerName, email, password1,
                         vehicleType, initialTime, initialTime);
@@ -103,6 +104,7 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
         return str.toString();
     }
 
+    //Add customer to sqlite database
     private void AddUser() {
         String value1 = password.getText().toString().trim();
         String value2 = confirmPassword.getText().toString().trim();
@@ -118,19 +120,10 @@ public class CustomerRegistrationActivity extends AppCompatActivity {
             cDbHelper.addCustomer(customermodel);
             // Snack Bar to show success message that record saved successfully
             Toast.makeText(CustomerRegistrationActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-//            emptyInputEditText();
         } else {
             // Snack Bar to show error message that record already exists
             Toast.makeText(CustomerRegistrationActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
         }
     }
-
-//    private void emptyInputEditText() {
-//        username.setText(null);
-//        customerEmail.setText(null);
-//        password.setText(null);
-//        confirmPassword.setText(null);
-//    }
-
 
 }

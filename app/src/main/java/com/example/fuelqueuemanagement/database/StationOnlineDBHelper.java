@@ -9,8 +9,6 @@ package com.example.fuelqueuemanagement.database;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,8 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.fuelqueuemanagement.FillingStationProfileActivity;
-import com.example.fuelqueuemanagement.MainActivity;
 import com.example.fuelqueuemanagement.SessionHandler;
 import com.example.fuelqueuemanagement.StationOwnerHomeActivity;
 import com.squareup.okhttp.Call;

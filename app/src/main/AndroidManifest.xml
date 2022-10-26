@@ -50,9 +50,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".FillingStationProfileActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
