@@ -127,6 +127,21 @@ public class customerDBHelper extends SQLiteOpenHelper{
         return cursorCount > 0;
     }
 
+    //Set session data
+    public void setSessionData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = new String[] { COLUMN_CUSTOMER_ID, COLUMN_VEHICLE_TYPE };
+        Cursor cursor = db.query(TABLE_CUSTOMER, columns, null, null, null, null, null);
+        if (cursor.moveToFirst()){
+            do{
+                SessionHandler.currentUser = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CUSTOMER_ID));
+                SessionHandler.vehicleType = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CUSTOMER_ID));
+                // do what ever you want here
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+    }
+
     //Set IIS base url
     private String BASE_URL = "http://192.168.43.140:8080/api";
 
@@ -201,6 +216,7 @@ public class customerDBHelper extends SQLiteOpenHelper{
                                 if(responseEmail.equals(email) && responsePassword.equals(password)){
                                     //Store logged user's id
                                     SessionHandler.currentUser = response.getString("customerId");
+                                    SessionHandler.vehicleType = response.getString("vehicleType");
                                     //start activity after login
                                     Intent intent = new Intent(context, CustomerHome.class);
                                     context.startActivity(intent);

@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,7 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fuelqueuemanagement.database.StationOnlineDBHelper;
 import com.example.fuelqueuemanagement.database.stationModel;
@@ -38,6 +41,11 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
     Button joinQueue;
     CustomAdapter customAdapter;
     List<stationModel> stationModelList = new ArrayList<>();
+    String selectStation;
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,9 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         joinQueue = findViewById(R.id.joinQueue);
         stationOnlineDBHelper = new StationOnlineDBHelper();
+
+        StationOnlineDBHelper stationOnlineDBHelper = new StationOnlineDBHelper();
+        stationOnlineDBHelper.getAllStations(getApplicationContext());
 
         listView = findViewById(R.id.listview);
 
@@ -58,10 +69,22 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
         joinQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                stationOnlineDBHelper.IncreasePetrolQueueLength("787332222508283509383729");
+                if(selectStation != null) {
+                    if(SessionHandler.vehicleType.equals("Petrol")) {
+                        stationOnlineDBHelper.IncreasePetrolQueueLength(selectStation);
+                    }
+                    else if(SessionHandler.vehicleType.equals("Diesel")){
+                        stationOnlineDBHelper.IncreaseDieselQueueLength(selectStation);
+                    }
+                    Intent i = new Intent(SearchFuelStationsActivity.this, FuelStationDetailsActivity.class);
+                    i.putExtra("stationId", selectStation);
+                    startActivity(i);
+                }
+                else{
+                    Toast.makeText(SearchFuelStationsActivity.this, "Please select station", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-//        List<stationModel> stations = stationOnlineDBHelper.getAllStations(getApplicationContext());
 
     }
 
@@ -82,9 +105,6 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-                Log.e("Main"," data search"+newText);
-
                 customAdapter.getFilter().filter(newText);
                 return true;
             }
@@ -144,16 +164,17 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
 
             TextView names = view.findViewById(R.id.name);
             TextView emails = view.findViewById(R.id.email);
+            TextView id = view.findViewById(R.id.stationID);
 
             names.setText(stationModelListFiltered.get(position).getStationName());
             emails.setText(stationModelListFiltered.get(position).getEmail());
+            id.setText(stationModelListFiltered.get(position).getStationId());
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("main activity","item clicked");
-                    // startActivity(new Intent(MainActivity.this,ItemsPreviewActivity.class).putExtra("items",itemsModelListFiltered.get(position)));
-
+                     selectStation = stationModelListFiltered.get(position).getStationId();
+                     SessionHandler.station = stationModelListFiltered.get(position);
                 }
             });
 
@@ -203,5 +224,25 @@ public class SearchFuelStationsActivity extends AppCompatActivity {
             };
             return filter;
         }
+    }
+
+    //Use handlers to refresh activity - https://www.tutorialspoint.com/how-to-run-a-method-every-10-seconds-in-android
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable); //stop handler when activity not visible super.onPause();
     }
 }

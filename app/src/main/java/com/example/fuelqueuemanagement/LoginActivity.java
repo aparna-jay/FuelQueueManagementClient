@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                 emptyInputEditText();
                 //set logged user type as customer
                 loggedUser = "customer";
+                DbHelper.setSessionData();
                 startActivity(accountsIntent);
             } else {
                 //Verify user with online database
